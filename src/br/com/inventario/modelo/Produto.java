@@ -2,7 +2,7 @@ package br.com.inventario.modelo;
 
 public class Produto {
     private int id;
-    private String nome;
+    private String nome; // Tipo String
     private double preco;
     private int quantidadeEstoque;
 
@@ -13,12 +13,8 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public boolean registrarVenda(int quantidade) {
-        if (this.quantidadeEstoque >= quantidade) {
-            this.quantidadeEstoque -= quantidade;
-            return true;
-        }
-        return false;
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
     public int getId() {
@@ -27,6 +23,14 @@ public class Produto {
 
     public String getNome() {
         return nome;
+    }
+
+    public boolean registrarVenda(int quantidade) {
+        if (this.quantidadeEstoque >= quantidade) {
+            this.quantidadeEstoque -= quantidade;
+            return true;
+        }
+        return false;
     }
 
     @Override
