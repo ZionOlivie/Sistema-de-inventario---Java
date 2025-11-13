@@ -2,7 +2,7 @@ package br.com.inventario.modelo;
 
 public class Produto {
     private int id;
-    private String nome; // Tipo String
+    private String nome;
     private double preco;
     private int quantidadeEstoque;
 
