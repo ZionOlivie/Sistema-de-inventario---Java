@@ -2,25 +2,45 @@ package br.com.inventario.modelo;
 
 public class Produto {
     private int id;
-    private String nome; // Tipo String
+    private String nome;
     private double preco;
     private int quantidadeEstoque;
+    private Categoria categoria;
 
-    public Produto(int id, String nome, double preco, int quantidadeEstoque) {
+    public Produto() {
+        this.categoria = Categoria.OUTROS;
+    }
+
+    public Produto(int id, String nome, double preco, int quantidadeEstoque, Categoria categoria) {
         this.id = id;
         this.nome = nome;
-        this.preco = preco;
+        setPreco(preco);
         this.quantidadeEstoque = quantidadeEstoque;
+        this.categoria = categoria;
+    }
+
+    public Produto(int id, String nome, double preco, int quantidadeEstoque) {
+        this(id, nome, preco, quantidadeEstoque, Categoria.OUTROS);
+    }
+
+    public void setPreco(double novoPreco) {
+        if (novoPreco > 0) {
+            this.preco = novoPreco;
+        } else {
+            System.err.println("Erro de preço");
+        }
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
     }
 
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
-
     public int getId() {
         return id;
     }
-
     public String getNome() {
         return nome;
     }
@@ -33,11 +53,18 @@ public class Produto {
         return false;
     }
 
+    public double calcularValorVenda(int quantidade) {
+        return this.preco * quantidade;
+    }
+
+    public double calcularValorVenda(int quantidade, double taxaImposto) {
+        double subtotal = this.calcularValorVenda(quantidade);
+        return subtotal * (1 + taxaImposto);
+    }
+
     @Override
     public String toString() {
-        return "ID: " + id +
-                " | Nome: " + nome +
-                " | Preço: R$" + String.format("%.2f", preco) +
-                " | Estoque: " + quantidadeEstoque;
+        return String.format("ID: %d | nome: %s | preço: R$%.2f | estoque: %d | categoria: %s",
+                id, nome, preco, quantidadeEstoque, categoria.getNomeExibicao());
     }
 }

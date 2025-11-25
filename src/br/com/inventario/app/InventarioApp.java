@@ -1,5 +1,7 @@
 package br.com.inventario.app;
 
+import br.com.inventario.modelo.Categoria;
+import br.com.inventario.modelo.Pedido;
 import br.com.inventario.modelo.Produto;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ public class InventarioApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Sistema Básico de Inventário - Feature 2 (Zion)");
+        System.out.println("Sistema Básico de Inventário - Feature 3 (Zion)");
 
         int opcao;
 
@@ -52,30 +54,30 @@ public class InventarioApp {
 
     private static void exibirMenu() {
         System.out.println("\n--- MENU ---");
-        System.out.println("1 - Cadastrar Novo Produto");
-        System.out.println("2 - Listar Todos os Produtos");
-        System.out.println("3 - Registrar Venda");
+        System.out.println("1 - Cadastrar novo produto");
+        System.out.println("2 - Listar todos os produtos");
+        System.out.println("3 - Registrar venda");
         System.out.println("4 - Sair");
         System.out.print("Escolha uma opção: ");
     }
 
     private static void cadastrarProduto() {
-        System.out.println("\n--- CADASTRO DE PRODUTO ---");
+        System.out.println("\n--- CADASTRO ---");
 
-        System.out.print("Nome do Produto: ");
+        System.out.print("Nome do produto: ");
         String nome = scanner.nextLine();
 
         System.out.print("Preço: ");
         double preco = scanner.nextDouble();
 
-        System.out.print("Quantidade em Estoque: ");
+        System.out.print("Quantidade em estoque: ");
         int quantidade = scanner.nextInt();
         scanner.nextLine();
 
         Produto novoProduto = new Produto(proximoId++, nome, preco, quantidade);
         listaDeProdutos.add(novoProduto);
 
-        System.out.println("Produto " + nome + " (ID: " + novoProduto.getId() + ") cadastrado com sucesso");
+        System.out.println("Produto " + nome + " (ID: " + novoProduto.getId() + ") cadastrado");
     }
 
     private static void listarProdutos() {
@@ -109,13 +111,13 @@ public class InventarioApp {
 
         int idVenda = -1;
         do {
-            System.out.print("Digite o ID do produto para venda (0 para cancelar): ");
+            System.out.print("Digite o ID do produto para venda (0 para voltar): ");
             if (scanner.hasNextInt()) {
                 idVenda = scanner.nextInt();
                 scanner.nextLine();
 
                 if (idVenda == 0) {
-                    System.out.println("Venda cancelada.");
+                    System.out.println("Venda cancelada");
                     return;
                 }
                 break;
